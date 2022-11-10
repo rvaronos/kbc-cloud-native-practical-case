@@ -1,6 +1,8 @@
 package com.ezgroceries.shoppinglist.api.shoppinglist;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,39 @@ public class ShoppingListController {
 				.buildAndExpand(createdShoppingList.getShoppingListId()).toUri();
 
 		return ResponseEntity.created(location).build();
+
+	}
+
+	@GetMapping(value = "/shopping-lists")
+	public List<ShoppingList> getAll() {
+
+		List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
+
+		ShoppingList stephanieShoppingList = new ShoppingList();
+		stephanieShoppingList.setShoppingListId(UUID.fromString("4ba92a46-1d1b-4e52-8e38-13cd56c7224c"));
+		stephanieShoppingList.setName("Stephanie's birthday");
+		stephanieShoppingList.setIngredients(new String[] {
+				"Tequila",
+				"Triple sec",
+				"Lime juice",
+				"Salt",
+				"Blue Curacao"
+		});
+		shoppingLists.add(stephanieShoppingList);
+
+		ShoppingList birthdayShoppingList = new ShoppingList();
+		birthdayShoppingList.setShoppingListId(UUID.fromString("6c7d09c2-8a25-4d54-a979-25ae779d2465"));
+		birthdayShoppingList.setName("My Birthday");
+		birthdayShoppingList.setIngredients(new String[] {
+				"Tequila",
+				"Triple sec",
+				"Lime juice",
+				"Salt",
+				"Blue Curacao"
+		});
+		shoppingLists.add(birthdayShoppingList);
+
+		return shoppingLists;
 
 	}
 
