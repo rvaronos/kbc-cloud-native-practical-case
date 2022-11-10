@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.cocktail;
+package com.ezgroceries.shoppinglist.api.cocktail;
 
 import java.util.UUID;
 
