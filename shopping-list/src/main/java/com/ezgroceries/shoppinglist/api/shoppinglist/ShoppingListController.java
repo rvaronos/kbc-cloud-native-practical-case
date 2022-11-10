@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,11 +17,17 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 public class ShoppingListController {
 
+	private ShoppingListService shoppingListService;
+
+	@Autowired
+	public ShoppingListController(ShoppingListService shoppingListService) {
+		this.shoppingListService = shoppingListService;
+	}
+
 	@PostMapping(value = "/shopping-lists")
 	public ResponseEntity<Void> create(@RequestBody ShoppingListCreateRequestBody body) {
-		ShoppingList createdShoppingList = new ShoppingList();
-		createdShoppingList.setShoppingListId(UUID.randomUUID());
-		createdShoppingList.setName(body.getName());
+
+		ShoppingList createdShoppingList = this.shoppingListService.create(body);
 
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
