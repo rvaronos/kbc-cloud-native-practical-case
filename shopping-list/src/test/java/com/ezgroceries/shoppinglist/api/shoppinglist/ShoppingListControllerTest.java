@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.mockito.BDDMockito;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.hamcrest.Matchers;
 
 import java.util.UUID;
 
@@ -50,12 +51,38 @@ public class ShoppingListControllerTest {
         }
 
         @Test
-        public void testGet() {
+        public void testGet() throws Exception {
+
+                String shoppingListId = "00611cca-2076-446b-89e8-0f53735a7a5a";
+
+                ShoppingList shoppingList = new ShoppingList();
+                shoppingList.setName("Stephanie's birthday");
+                shoppingList.setShoppingListId(UUID.fromString(shoppingListId));
+                shoppingList.setIngredients(new String[] {
+                                "Tequila",
+                                "Triple sec",
+                                "Lime juice",
+                                "Salt",
+                                "Blue Curacao"
+                });
+
+                Gson requestBodyGson = new Gson();
+                String shoppingListJson = requestBodyGson.toJson(shoppingList);
+
+                mockMvc.perform(MockMvcRequestBuilders.get("/shopping-lists/" + shoppingListId))
+                                .andExpect(MockMvcResultMatchers.status().isOk())
+                                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                                .andExpect(MockMvcResultMatchers.content().json(shoppingListJson));
 
         }
 
         @Test
-        public void testGetAll() {
+        public void testGetAll() throws Exception {
+
+                mockMvc.perform(MockMvcRequestBuilders.get("/shopping-lists"))
+                                .andExpect(MockMvcResultMatchers.status().isOk())
+                                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
+                                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)));
 
         }
 }

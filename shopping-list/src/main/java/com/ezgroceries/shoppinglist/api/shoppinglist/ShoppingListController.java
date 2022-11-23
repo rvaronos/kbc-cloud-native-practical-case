@@ -74,7 +74,7 @@ public class ShoppingListController {
 	@GetMapping(value = "/shopping-lists/{shoppingListId}")
 	public ShoppingList get(@PathVariable UUID shoppingListId) {
 		ShoppingList fetchedShoppingList = new ShoppingList();
-		fetchedShoppingList.setShoppingListId(UUID.randomUUID());
+		fetchedShoppingList.setShoppingListId(shoppingListId);
 		fetchedShoppingList.setName("Stephanie's birthday");
 		fetchedShoppingList.setIngredients(new String[] {
 				"Tequila",
