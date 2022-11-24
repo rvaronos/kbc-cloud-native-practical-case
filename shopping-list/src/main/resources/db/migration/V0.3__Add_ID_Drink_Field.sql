@@ -1,0 +1,2 @@
+alter table COCKTAIL
+    ADD ID_DRINK TEXT

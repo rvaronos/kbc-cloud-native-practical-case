@@ -18,3 +18,9 @@ spring:
         jdbc:
           lob:
             non-contextual-creation: true
+
+# Actuator
+management:
+  endpoint:
+    health:
+      show-details: always
