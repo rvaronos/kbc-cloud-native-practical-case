@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingList;
+
 import lombok.Data;
 
 @Entity
@@ -20,5 +22,12 @@ public class ShoppingListDBEntity {
 
     @Column
     private String name;
+
+    public ShoppingList output() {
+        ShoppingList shoppingList = new ShoppingList();
+        shoppingList.setShoppingListId(this.getId());
+        shoppingList.setName(this.getName());
+        return shoppingList;
+    }
 
 }

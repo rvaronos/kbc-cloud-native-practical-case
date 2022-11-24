@@ -1,29 +1,25 @@
 package com.ezgroceries.shoppinglist.api.shoppinglist;
 
+import java.util.UUID;
+
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.google.gson.Gson;
 
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.mockito.BDDMockito;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.hamcrest.Matchers;
-
-import java.util.UUID;
-
 @WebMvcTest(ShoppingListController.class)
+@Import(ShoppingListControllerTestConfiguration.class)
 public class ShoppingListControllerTest {
 
         @Autowired
         private MockMvc mockMvc;
-
-        @MockBean
-        private ShoppingListService shoppingListService;
 
         @Test
         public void testCreate() throws Exception {
@@ -35,11 +31,8 @@ public class ShoppingListControllerTest {
                 String requestBodyJson = requestBodyGson.toJson(requestBody);
 
                 ShoppingList shoppingList = new ShoppingList();
-                shoppingList.setShoppingListId(UUID.randomUUID());
+                shoppingList.setShoppingListId(UUID.fromString("c16acb4d-c85e-43db-a006-5f8d99a97aa2"));
                 shoppingList.setName("Stephanie's birthday");
-
-                BDDMockito.given(shoppingListService.create(BDDMockito.any(ShoppingListCreateRequestBody.class)))
-                                .willReturn(shoppingList);
 
                 mockMvc.perform(MockMvcRequestBuilders.post("/shopping-lists")
                                 .contentType(MediaType.APPLICATION_JSON)

@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.api.shoppinglist.db;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,18 @@ public class ShoppingListDBService implements ShoppingListService {
         shoppingListDBEntity.setName(requestBody.getName());
         ShoppingListDBEntity savedShoppingListDBEntity = this.shoppingListDBRepository.save(shoppingListDBEntity);
 
-        ShoppingList shoppingList = new ShoppingList();
-        shoppingList.setShoppingListId(savedShoppingListDBEntity.getId());
-        shoppingList.setName(savedShoppingListDBEntity.getName());
-
-        return shoppingList;
+        return savedShoppingListDBEntity.output();
     }
 
     @Override
-    public ShoppingList get(String shoppingListId) {
-        // TODO Auto-generated method stub
-        return null;
+    public Optional<ShoppingList> get(UUID shoppingListId) {
+        Optional<ShoppingListDBEntity> shoppingListDBEntity = this.shoppingListDBRepository.findById(shoppingListId);
+
+        if (shoppingListDBEntity.isPresent()) {
+            return Optional.of(shoppingListDBEntity.get().output());
+        }
+
+        return Optional.empty();
     }
 
     @Override

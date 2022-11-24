@@ -1,21 +1,28 @@
 package com.ezgroceries.shoppinglist.api.shoppinglist;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class ShoppingListController {
+
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private ShoppingListService shoppingListService;
@@ -36,52 +43,23 @@ public class ShoppingListController {
 
 	@GetMapping(value = "/shopping-lists")
 	public List<ShoppingList> getAll() {
-
-		List<ShoppingList> shoppingLists = new ArrayList<ShoppingList>();
-
-		ShoppingList stephanieShoppingList = new ShoppingList();
-		stephanieShoppingList.setShoppingListId(UUID.fromString("4ba92a46-1d1b-4e52-8e38-13cd56c7224c"));
-		stephanieShoppingList.setName("Stephanie's birthday");
-		stephanieShoppingList.setIngredients(new String[] {
-				"Tequila",
-				"Triple sec",
-				"Lime juice",
-				"Salt",
-				"Blue Curacao"
-		});
-		shoppingLists.add(stephanieShoppingList);
-
-		ShoppingList birthdayShoppingList = new ShoppingList();
-		birthdayShoppingList.setShoppingListId(UUID.fromString("6c7d09c2-8a25-4d54-a979-25ae779d2465"));
-		birthdayShoppingList.setName("My Birthday");
-		birthdayShoppingList.setIngredients(new String[] {
-				"Tequila",
-				"Triple sec",
-				"Lime juice",
-				"Salt",
-				"Blue Curacao"
-		});
-		shoppingLists.add(birthdayShoppingList);
-
-		return shoppingLists;
-
+		return this.shoppingListService.getAll();
 	}
 
 	@GetMapping(value = "/shopping-lists/{shoppingListId}")
 	public ShoppingList get(@PathVariable UUID shoppingListId) {
-		ShoppingList fetchedShoppingList = new ShoppingList();
-		fetchedShoppingList.setShoppingListId(shoppingListId);
-		fetchedShoppingList.setName("Stephanie's birthday");
-		fetchedShoppingList.setIngredients(new String[] {
-				"Tequila",
-				"Triple sec",
-				"Lime juice",
-				"Salt",
-				"Blue Curacao"
-		});
+		Optional<ShoppingList> shoppingList = this.shoppingListService.get(shoppingListId);
+		if (shoppingList.isEmpty()) {
+			throw new IllegalArgumentException("Shopping list not found");
+		}
+		return shoppingList.get();
+	}
 
-		return fetchedShoppingList;
-
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ExceptionHandler(IllegalArgumentException.class)
+	public void handleNotFound(Exception ex) {
+		logger.error(ex.getMessage());
+		// return empty 404
 	}
 
 }
