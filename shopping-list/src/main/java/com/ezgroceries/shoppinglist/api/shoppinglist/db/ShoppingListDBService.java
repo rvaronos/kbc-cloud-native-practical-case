@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.api.shoppinglist.db;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -19,8 +20,16 @@ public class ShoppingListDBService implements ShoppingListService {
 
     @Override
     public ShoppingList create(ShoppingListCreateRequestBody requestBody) {
-        // TODO Auto-generated method stub
-        return null;
+        ShoppingListDBEntity shoppingListDBEntity = new ShoppingListDBEntity();
+        shoppingListDBEntity.setId(UUID.randomUUID());
+        shoppingListDBEntity.setName(requestBody.getName());
+        ShoppingListDBEntity savedShoppingListDBEntity = this.shoppingListDBRepository.save(shoppingListDBEntity);
+
+        ShoppingList shoppingList = new ShoppingList();
+        shoppingList.setShoppingListId(savedShoppingListDBEntity.getId());
+        shoppingList.setName(savedShoppingListDBEntity.getName());
+
+        return shoppingList;
     }
 
     @Override

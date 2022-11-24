@@ -7,12 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "shopping_list")
+@Data
 public class ShoppingListDBEntity {
 
     @Id
-    @Column()
+    @Column
     private UUID id;
+
+    @Column
+    private String name;
 
 }
