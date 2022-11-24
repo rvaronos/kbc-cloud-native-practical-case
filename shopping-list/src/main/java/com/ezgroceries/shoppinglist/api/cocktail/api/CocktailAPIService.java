@@ -8,13 +8,13 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
 import com.ezgroceries.shoppinglist.api.cocktail.api.CocktailAPIResponse.DrinkResource;
 
-@Component
+@Service
 @ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "api")
 public class CocktailAPIService implements CocktailService {
 

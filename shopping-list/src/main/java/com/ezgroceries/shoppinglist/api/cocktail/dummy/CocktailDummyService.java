@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
 
-@Component
+@Service
 @ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "dummy")
 public class CocktailDummyService implements CocktailService {
 
