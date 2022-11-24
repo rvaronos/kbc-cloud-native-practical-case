@@ -79,10 +79,21 @@ public class ShoppingListControllerTest {
         @Test
         public void testGetAll() throws Exception {
 
+                int expectedSize = 2;
+
                 mockMvc.perform(MockMvcRequestBuilders.get("/shopping-lists"))
                                 .andExpect(MockMvcResultMatchers.status().isOk())
                                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)));
+                                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(expectedSize)))
+                                .andExpect(
+                                                MockMvcResultMatchers.jsonPath("$[?(@.name empty false)]",
+                                                                Matchers.hasSize(expectedSize)))
+                                .andExpect(
+                                                MockMvcResultMatchers.jsonPath("$[?(@.shoppingListId empty false)]",
+                                                                Matchers.hasSize(expectedSize)))
+                                .andExpect(
+                                                MockMvcResultMatchers.jsonPath("$[?(@.ingredients empty false)]",
+                                                                Matchers.hasSize(expectedSize)));
 
         }
 }
