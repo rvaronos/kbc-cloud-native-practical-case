@@ -1,10 +1,10 @@
-package com.ezgroceries.shoppinglist.api.cocktail.db;
+package com.ezgroceries.shoppinglist.api.cocktail.api;
 
 import java.util.List;
 
 import lombok.Data;
 
-public class CocktailDBResponse {
+public class CocktailAPIResponse {
     private List<DrinkResource> drinks;
 
     public List<DrinkResource> getDrinks() {

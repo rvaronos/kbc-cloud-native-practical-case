@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.api.cocktail.db;
+package com.ezgroceries.shoppinglist.api.cocktail.api;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
 @FeignClient(name = "cocktailDBClient", url = "https://www.thecocktaildb.com/api/json/v1/1")
-public interface CocktailDBClient {
+public interface CocktailAPIClient {
 
     @GetMapping(value = "search.php")
-    ResponseEntity<CocktailDBResponse> searchCocktails(@RequestParam("s") String search);
+    ResponseEntity<CocktailAPIResponse> searchCocktails(@RequestParam("s") String search);
 
 }

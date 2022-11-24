@@ -1,6 +1,6 @@
 service:
-  cocktail: "db"
-  shoppingList: "dummy"
+  cocktail: "api"
+  shoppingList: "db"
 
 spring:
   datasource:

@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.api.cocktail.db;
+package com.ezgroceries.shoppinglist.api.cocktail.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +12,18 @@ import org.springframework.stereotype.Component;
 
 import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
-import com.ezgroceries.shoppinglist.api.cocktail.db.CocktailDBResponse.DrinkResource;
+import com.ezgroceries.shoppinglist.api.cocktail.api.CocktailAPIResponse.DrinkResource;
 
 @Component
-@ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "db")
-public class CocktailDBService implements CocktailService {
+@ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "api")
+public class CocktailAPIService implements CocktailService {
 
     @Autowired
-    private CocktailDBClient cocktailDBClient;
+    private CocktailAPIClient cocktailDBClient;
 
     @Override
     public List<Cocktail> getAll(String query) {
-        ResponseEntity<CocktailDBResponse> response = this.cocktailDBClient.searchCocktails(query);
+        ResponseEntity<CocktailAPIResponse> response = this.cocktailDBClient.searchCocktails(query);
 
         List<DrinkResource> drinks = response.getBody().getDrinks();
 
