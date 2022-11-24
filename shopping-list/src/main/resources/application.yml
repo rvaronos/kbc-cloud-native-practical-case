@@ -1,3 +1,20 @@
 service:
   cocktail: "db"
   shoppingList: "dummy"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: mysecretpassword
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        #The SQL dialect makes Hibernate generate better SQL for the chosen database
+        jdbc:
+          lob:
+            non-contextual-creation: true

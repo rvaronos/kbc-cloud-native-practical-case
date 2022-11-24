@@ -1,4 +1,6 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.debug.settings.hotCodeReplace": "auto"
+    "java.debug.settings.hotCodeReplace": "auto",
+    "docker.dockerPath": "podman",
+    "docker.composeCommand": "podman-compose"
 }
