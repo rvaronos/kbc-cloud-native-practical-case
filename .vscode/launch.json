@@ -15,7 +15,8 @@
             "name": "Launch ShoppingListApplication",
             "request": "launch",
             "mainClass": "com.ezgroceries.shoppinglist.ShoppingListApplication",
-            "projectName": "shopping-list"
+            "projectName": "shopping-list",
+            "args": "--spring.profiles.active=hsqldb"
         }
     ]
 }
