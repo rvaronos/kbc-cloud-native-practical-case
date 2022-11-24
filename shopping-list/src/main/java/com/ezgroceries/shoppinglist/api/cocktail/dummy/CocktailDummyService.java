@@ -1,17 +1,25 @@
-package com.ezgroceries.shoppinglist.api.cocktail;
+package com.ezgroceries.shoppinglist.api.cocktail.dummy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class CocktailMock {
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Component;
+
+import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
+import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
+
+@Component
+@ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "dummy")
+public class CocktailDummyService implements CocktailService {
 
     public List<Cocktail> cocktails;
 
-    public static List<Cocktail> getCocktailList() {
+    @Override
+    public List<Cocktail> getAll(String query) {
         List<Cocktail> cocktails = new ArrayList<Cocktail>();
         Cocktail cocktailMargerita = new Cocktail();
-        cocktailMargerita.setCocktailId(UUID.fromString("23b3d85a-3928-41c0-a533-6538a71e17c4"));
+        cocktailMargerita.setCocktailId("23b3d85a-3928-41c0-a533-6538a71e17c4");
         cocktailMargerita.setName("Margerita");
         cocktailMargerita.setGlass("Cocktail glass");
         cocktailMargerita.setInstructions(
@@ -21,7 +29,7 @@ public class CocktailMock {
         cocktails.add(cocktailMargerita);
 
         Cocktail cocktailBlueMargerita = new Cocktail();
-        cocktailBlueMargerita.setCocktailId(UUID.fromString("d615ec78-fe93-467b-8d26-5d26d8eab073"));
+        cocktailBlueMargerita.setCocktailId("23b3d85a-3928-41c0-a533-6538a71e17c4");
         cocktailBlueMargerita.setName("Blue Margerita");
         cocktailBlueMargerita.setGlass("Cocktail glass");
         cocktailBlueMargerita.setInstructions("Rub rim of cocktail glass with lime juice. Dip rim in coarse salt..");

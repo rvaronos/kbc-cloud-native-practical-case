@@ -17,12 +17,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 public class ShoppingListController {
 
-	private ShoppingListService shoppingListService;
-
 	@Autowired
-	public ShoppingListController(ShoppingListService shoppingListService) {
-		this.shoppingListService = shoppingListService;
-	}
+	private ShoppingListService shoppingListService;
 
 	@PostMapping(value = "/shopping-lists")
 	public ResponseEntity<Void> create(@RequestBody ShoppingListCreateRequestBody body) {

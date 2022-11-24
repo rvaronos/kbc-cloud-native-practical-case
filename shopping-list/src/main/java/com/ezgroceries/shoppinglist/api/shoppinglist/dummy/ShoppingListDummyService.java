@@ -1,9 +1,18 @@
-package com.ezgroceries.shoppinglist.api.shoppinglist;
+package com.ezgroceries.shoppinglist.api.shoppinglist.dummy;
 
 import java.util.List;
 import java.util.UUID;
 
-public class ShoppingListServiceDummy implements ShoppingListService {
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Component;
+
+import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingList;
+import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListCreateRequestBody;
+import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListService;
+
+@Component
+@ConditionalOnProperty(prefix = "service", name = "shoppingList", havingValue = "dummy")
+public class ShoppingListDummyService implements ShoppingListService {
 
     @Override
     public ShoppingList create(ShoppingListCreateRequestBody requestBody) {
