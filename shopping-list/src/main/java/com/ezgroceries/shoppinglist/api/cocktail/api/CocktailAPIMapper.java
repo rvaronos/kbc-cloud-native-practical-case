@@ -4,11 +4,10 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
-import com.ezgroceries.shoppinglist.api.cocktail.api.CocktailAPIResponse.DrinkResource;
 
 public class CocktailAPIMapper {
 
-    public static Cocktail mapCocktail(DrinkResource dbDrink) {
+    public static Cocktail mapCocktail(CocktailAPIResource dbDrink) {
 
         String[] allIngredients = {
                 dbDrink.getStrIngredient1(),

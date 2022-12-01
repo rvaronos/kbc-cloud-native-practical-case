@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface CocktailAPIClient {
 
     @GetMapping(value = "search.php")
-    ResponseEntity<CocktailAPIResponse> searchCocktails(@RequestParam("s") String search);
+    ResponseEntity<CocktailAPIResponseSearch> searchCocktails(@RequestParam("s") String search);
+
+    @GetMapping(value = "lookup.php")
+    ResponseEntity<CocktailAPIResponseLookup> getCocktail(@RequestParam("i") String id);
 
 }
