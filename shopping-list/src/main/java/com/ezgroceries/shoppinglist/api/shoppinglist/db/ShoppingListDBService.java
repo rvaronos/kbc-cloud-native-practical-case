@@ -3,6 +3,7 @@ package com.ezgroceries.shoppinglist.api.shoppinglist.db;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -42,8 +43,10 @@ public class ShoppingListDBService implements ShoppingListService {
 
     @Override
     public List<ShoppingList> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+        List<ShoppingListDBEntity> shoppingListDBEntityList = this.shoppingListDBRepository.findAll();
+
+        return shoppingListDBEntityList.stream().map((shoppingListDBEntity) -> shoppingListDBEntity.output())
+                .collect(Collectors.toList());
     }
 
 }
