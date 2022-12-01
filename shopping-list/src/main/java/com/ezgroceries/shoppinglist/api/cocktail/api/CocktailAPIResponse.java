@@ -19,9 +19,8 @@ public class CocktailAPIResponse {
     public static class DrinkResource {
         private String idDrink;
         private String strDrink;
-        private String strGlass;
-        private String strInstructions;
         private String strDrinkThumb;
+        private String strGlass;
         private String strIngredient1;
         private String strIngredient2;
         private String strIngredient3;
@@ -37,5 +36,6 @@ public class CocktailAPIResponse {
         private String strIngredient13;
         private String strIngredient14;
         private String strIngredient15;
+        private String strInstructions;
     }
 }
