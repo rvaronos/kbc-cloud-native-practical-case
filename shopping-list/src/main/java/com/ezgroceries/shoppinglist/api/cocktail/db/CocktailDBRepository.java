@@ -1,14 +1,11 @@
 package com.ezgroceries.shoppinglist.api.cocktail.db;
 
-import javax.sql.DataSource;
+import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public class CocktailDBRepository {
-
-    @Autowired
-    private DataSource dataSource;
+public interface CocktailDBRepository extends JpaRepository<CocktailDBEntity, UUID> {
 
 }

@@ -10,8 +10,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingList;
-import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListCreateRequestBody;
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListService;
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 
 @Service
 @ConditionalOnProperty(prefix = "service", name = "shoppingList", havingValue = "db")
@@ -21,10 +22,10 @@ public class ShoppingListDBService implements ShoppingListService {
     private ShoppingListDBRepository shoppingListDBRepository;
 
     @Override
-    public ShoppingList create(ShoppingListCreateRequestBody requestBody) {
+    public ShoppingList create(ShoppingListBodyCreate body) {
         ShoppingListDBEntity shoppingListDBEntity = new ShoppingListDBEntity();
         shoppingListDBEntity.setId(UUID.randomUUID());
-        shoppingListDBEntity.setName(requestBody.getName());
+        shoppingListDBEntity.setName(body.getName());
         ShoppingListDBEntity savedShoppingListDBEntity = this.shoppingListDBRepository.save(shoppingListDBEntity);
 
         return savedShoppingListDBEntity.output();
@@ -47,6 +48,11 @@ public class ShoppingListDBService implements ShoppingListService {
 
         return shoppingListDBEntityList.stream().map((shoppingListDBEntity) -> shoppingListDBEntity.output())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public ShoppingList addCocktail(ShoppingListBodyAddCocktail body) {
+        return null;
     }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 import com.google.gson.Gson;
 
 @WebMvcTest(ShoppingListController.class)
@@ -24,7 +25,7 @@ public class ShoppingListControllerTest {
         @Test
         public void testCreate() throws Exception {
 
-                ShoppingListCreateRequestBody requestBody = new ShoppingListCreateRequestBody();
+                ShoppingListBodyCreate requestBody = new ShoppingListBodyCreate();
                 requestBody.setName("Stephanie's birthday");
 
                 Gson requestBodyGson = new Gson();

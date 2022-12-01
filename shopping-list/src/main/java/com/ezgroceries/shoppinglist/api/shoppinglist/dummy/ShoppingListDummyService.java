@@ -9,15 +9,16 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingList;
-import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListCreateRequestBody;
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListService;
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 
 @Service
 @ConditionalOnProperty(prefix = "service", name = "shoppingList", havingValue = "dummy")
 public class ShoppingListDummyService implements ShoppingListService {
 
     @Override
-    public ShoppingList create(ShoppingListCreateRequestBody requestBody) {
+    public ShoppingList create(ShoppingListBodyCreate requestBody) {
 
         ShoppingList createdShoppingList = new ShoppingList();
         createdShoppingList.setShoppingListId(UUID.fromString("c16acb4d-c85e-43db-a006-5f8d99a97aa2"));
@@ -73,6 +74,12 @@ public class ShoppingListDummyService implements ShoppingListService {
         shoppingLists.add(birthdayShoppingList);
 
         return shoppingLists;
+    }
+
+    @Override
+    public ShoppingList addCocktail(ShoppingListBodyAddCocktail body) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

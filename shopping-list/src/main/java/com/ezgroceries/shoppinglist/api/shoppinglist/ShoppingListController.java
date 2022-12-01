@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 
 @RestController
 public class ShoppingListController {
@@ -28,7 +32,7 @@ public class ShoppingListController {
 	private ShoppingListService shoppingListService;
 
 	@PostMapping(value = "/shopping-lists")
-	public ResponseEntity<Void> create(@RequestBody ShoppingListCreateRequestBody body) {
+	public ResponseEntity<Void> create(@RequestBody ShoppingListBodyCreate body) {
 
 		ShoppingList createdShoppingList = this.shoppingListService.create(body);
 
@@ -53,6 +57,19 @@ public class ShoppingListController {
 			throw new IllegalArgumentException("Shopping list not found");
 		}
 		return shoppingList.get();
+	}
+
+	@PutMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
+	public ResponseEntity<Void> addCocktail(@PathVariable UUID shoppingListId,
+			@RequestBody ShoppingListBodyAddCocktail body) {
+		ShoppingList createdShoppingList = this.shoppingListService.addCocktail(body);
+
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(createdShoppingList.getShoppingListId()).toUri();
+
+		return ResponseEntity.accepted().build();
 	}
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)

@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.api.cocktail.api;
+package com.ezgroceries.shoppinglist.api.cocktail.db;
 
 import java.util.List;
 
@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
+import com.ezgroceries.shoppinglist.api.cocktail.api.CocktailAPIRepository;
 
 @Service
-@ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "api")
-public class CocktailAPIService implements CocktailService {
+@ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "db")
+public class CocktailDBService implements CocktailService {
 
     @Autowired
     private CocktailAPIRepository cocktailAPI;

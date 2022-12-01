@@ -11,8 +11,11 @@ import javax.persistence.Table;
 
 import com.ezgroceries.shoppinglist.common.converter.StringSetConverter;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "cocktail")
+@Data
 public class CocktailDBEntity {
 
     @Id
