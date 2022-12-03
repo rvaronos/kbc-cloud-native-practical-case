@@ -1,6 +1,8 @@
 package com.ezgroceries.shoppinglist.api.cocktail.api;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -14,11 +16,16 @@ import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
 public class CocktailAPIService implements CocktailService {
 
     @Autowired
-    private CocktailAPIRepository cocktailAPI;
+    private CocktailAPIRepository cocktailAPIRepository;
 
     @Override
     public List<Cocktail> getAll(String query) {
-        return this.cocktailAPI.getAll(query);
+        return this.cocktailAPIRepository.getAll(query);
+    }
+
+    @Override
+    public Optional<Cocktail> get(UUID id) {
+        return Optional.empty();
     }
 
 }

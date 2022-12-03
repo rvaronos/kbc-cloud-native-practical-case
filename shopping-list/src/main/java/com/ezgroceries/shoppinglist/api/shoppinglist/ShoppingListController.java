@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,17 +58,18 @@ public class ShoppingListController {
 		return shoppingList.get();
 	}
 
-	@PutMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
+	@PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
 	public ResponseEntity<Void> addCocktail(@PathVariable UUID shoppingListId,
 			@RequestBody ShoppingListBodyAddCocktail body) {
-		ShoppingList createdShoppingList = this.shoppingListService.addCocktail(body);
+
+		this.shoppingListService.addCocktail(shoppingListId, body);
 
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
-				.buildAndExpand(createdShoppingList.getShoppingListId()).toUri();
+				.buildAndExpand(body.getCocktailId()).toUri();
 
-		return ResponseEntity.accepted().build();
+		return ResponseEntity.created(location).build();
 	}
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)

@@ -14,5 +14,5 @@ public interface ShoppingListService {
 
     public List<ShoppingList> getAll();
 
-    public ShoppingList addCocktail(ShoppingListBodyAddCocktail body);
+    public void addCocktail(UUID shoppingListId, ShoppingListBodyAddCocktail body);
 }

@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import com.ezgroceries.shoppinglist.api.cocktail_shoppinglist.db.CocktailShoppingListDBEmbeddableId;
+import com.ezgroceries.shoppinglist.api.cocktail_shoppinglist.db.CocktailShoppingListDBEntity;
+import com.ezgroceries.shoppinglist.api.cocktail_shoppinglist.db.CocktailShoppingListDBRepository;
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingList;
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListService;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
@@ -20,6 +23,9 @@ public class ShoppingListDBService implements ShoppingListService {
 
     @Autowired
     private ShoppingListDBRepository shoppingListDBRepository;
+
+    @Autowired
+    private CocktailShoppingListDBRepository cocktailShoppingListDBRepository;
 
     @Override
     public ShoppingList create(ShoppingListBodyCreate body) {
@@ -34,7 +40,6 @@ public class ShoppingListDBService implements ShoppingListService {
     @Override
     public Optional<ShoppingList> get(UUID shoppingListId) {
         Optional<ShoppingListDBEntity> shoppingListDBEntity = this.shoppingListDBRepository.findById(shoppingListId);
-
         if (shoppingListDBEntity.isPresent()) {
             return Optional.of(shoppingListDBEntity.get().output());
         }
@@ -51,8 +56,16 @@ public class ShoppingListDBService implements ShoppingListService {
     }
 
     @Override
-    public ShoppingList addCocktail(ShoppingListBodyAddCocktail body) {
-        return null;
+    public void addCocktail(UUID shoppingListId, ShoppingListBodyAddCocktail body) {
+
+        CocktailShoppingListDBEntity cocktailShoppingListDBEntity = new CocktailShoppingListDBEntity();
+        CocktailShoppingListDBEmbeddableId cocktailShoppingListDBEmbeddableId = new CocktailShoppingListDBEmbeddableId();
+        cocktailShoppingListDBEmbeddableId.setCocktail_id(body.getCocktailId());
+        cocktailShoppingListDBEmbeddableId.setShopping_list_id(shoppingListId);
+        cocktailShoppingListDBEntity.setId(cocktailShoppingListDBEmbeddableId);
+
+        CocktailShoppingListDBEntity savedCocktailShoppingListDBEntity = this.cocktailShoppingListDBRepository
+                .save(cocktailShoppingListDBEntity);
     }
 
 }

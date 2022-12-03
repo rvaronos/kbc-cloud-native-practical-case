@@ -77,9 +77,9 @@ public class ShoppingListDummyService implements ShoppingListService {
     }
 
     @Override
-    public ShoppingList addCocktail(ShoppingListBodyAddCocktail body) {
+    public void addCocktail(UUID shoppingListId, ShoppingListBodyAddCocktail body) {
         // TODO Auto-generated method stub
-        return null;
+
     }
 
 }
