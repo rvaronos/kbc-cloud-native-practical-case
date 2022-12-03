@@ -28,4 +28,18 @@ public class CocktailShoppingListDBEntity {
     @MapsId("shopping_list_id")
     private ShoppingListDBEntity shoppingList;
 
+    public CocktailShoppingListDBEntity() {
+    }
+
+    public CocktailShoppingListDBEntity(CocktailDBEntity cocktail, ShoppingListDBEntity shoppingList) {
+        this.cocktail = cocktail;
+        this.shoppingList = shoppingList;
+
+        CocktailShoppingListDBEmbeddableId id = new CocktailShoppingListDBEmbeddableId();
+        id.setCocktail_id(cocktail.getId());
+        id.setShopping_list_id(shoppingList.getId());
+
+        this.id = id;
+    }
+
 }

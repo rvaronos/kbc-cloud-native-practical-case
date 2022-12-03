@@ -24,7 +24,16 @@ public class CocktailDBService implements CocktailService {
 
     @Override
     public List<Cocktail> getAll(String query) {
-        return this.cocktailAPI.getAll(query);
+        List<Cocktail> cocktails = this.cocktailAPI.getAll(query);
+        cocktails.stream().forEach(cocktail -> {
+            if (this.cocktailDBRepository.existsById(cocktail.getCocktailId())) {
+                return;
+            }
+            CocktailDBEntity cocktailDBEntity = new CocktailDBEntity();
+            cocktailDBEntity.setId(cocktail.getCocktailId());
+            this.cocktailDBRepository.save(cocktailDBEntity);
+        });
+        return cocktails;
     }
 
     @Override

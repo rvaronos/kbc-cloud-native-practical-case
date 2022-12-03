@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 
@@ -62,12 +63,12 @@ public class ShoppingListController {
 	public ResponseEntity<Void> addCocktail(@PathVariable UUID shoppingListId,
 			@RequestBody ShoppingListBodyAddCocktail body) {
 
-		this.shoppingListService.addCocktail(shoppingListId, body);
+		Cocktail cocktail = this.shoppingListService.addCocktail(shoppingListId, body);
 
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
-				.buildAndExpand(body.getCocktailId()).toUri();
+				.buildAndExpand(cocktail.getCocktailId()).toUri();
 
 		return ResponseEntity.created(location).build();
 	}

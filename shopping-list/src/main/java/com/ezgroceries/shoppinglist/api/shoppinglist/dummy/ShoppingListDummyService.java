@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingList;
 import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListService;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
@@ -77,9 +78,9 @@ public class ShoppingListDummyService implements ShoppingListService {
     }
 
     @Override
-    public void addCocktail(UUID shoppingListId, ShoppingListBodyAddCocktail body) {
+    public Cocktail addCocktail(UUID shoppingListId, ShoppingListBodyAddCocktail body) {
         // TODO Auto-generated method stub
-
+        return null;
     }
 
 }
