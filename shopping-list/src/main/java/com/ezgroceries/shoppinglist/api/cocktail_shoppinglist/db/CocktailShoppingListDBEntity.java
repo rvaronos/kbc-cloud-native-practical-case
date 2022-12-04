@@ -10,22 +10,28 @@ import javax.persistence.Table;
 import com.ezgroceries.shoppinglist.api.cocktail.db.CocktailDBEntity;
 import com.ezgroceries.shoppinglist.api.shoppinglist.db.ShoppingListDBEntity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "cocktail_shopping_list")
-@Data
 public class CocktailShoppingListDBEntity {
 
     @EmbeddedId
+    @Getter
+    @Setter
     private CocktailShoppingListDBEmbeddableId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("cocktail_id")
+    @Getter
+    @Setter
     private CocktailDBEntity cocktail;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("shopping_list_id")
+    @Getter
+    @Setter
     private ShoppingListDBEntity shoppingList;
 
     public CocktailShoppingListDBEntity() {

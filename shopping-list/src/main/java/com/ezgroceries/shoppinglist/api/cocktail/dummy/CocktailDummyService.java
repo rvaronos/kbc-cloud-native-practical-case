@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
+import com.google.common.collect.Sets;
 
 @Service
 @ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "dummy")
@@ -50,7 +51,7 @@ public class CocktailDummyService implements CocktailService {
         cocktailMargerita.setInstructions(
                 "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten..");
         cocktailMargerita.setImage("https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg");
-        cocktailMargerita.setIngredients(new String[] { "Tequila", "Triple sec", "Lime juice", "Salt" });
+        cocktailMargerita.setIngredients(Sets.newHashSet("Tequila", "Triple sec", "Lime juice", "Salt"));
         return cocktailMargerita;
     }
 
@@ -62,7 +63,7 @@ public class CocktailDummyService implements CocktailService {
         cocktailBlueMargerita.setGlass("Cocktail glass");
         cocktailBlueMargerita.setInstructions("Rub rim of cocktail glass with lime juice. Dip rim in coarse salt..");
         cocktailBlueMargerita.setImage("https://www.thecocktaildb.com/images/media/drink/qtvvyq1439905913.jpg");
-        cocktailBlueMargerita.setIngredients(new String[] { "Tequila", "Blue Curacao", "Lime juice", "Salt" });
+        cocktailBlueMargerita.setIngredients(Sets.newHashSet("Tequila", "Blue Curacao", "Lime juice", "Salt"));
         return cocktailBlueMargerita;
 
     }

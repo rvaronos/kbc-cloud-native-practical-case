@@ -1,5 +1,6 @@
 package com.ezgroceries.shoppinglist.api.shoppinglist;
 
+import java.util.Set;
 import java.util.UUID;
 
 import lombok.Data;
@@ -8,5 +9,5 @@ import lombok.Data;
 public class ShoppingList {
     private UUID shoppingListId;
     private String name;
-    private String[] ingredients;
+    private Set<String> ingredients;
 }
