@@ -1,5 +1,6 @@
 package com.ezgroceries.shoppinglist.api.cocktail;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -13,5 +14,5 @@ public class Cocktail {
     private String glass;
     private String instructions;
     private String image;
-    private Set<String> ingredients;
+    private Set<String> ingredients = new HashSet<>();
 }

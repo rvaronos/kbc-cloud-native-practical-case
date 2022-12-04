@@ -42,7 +42,7 @@ public class CocktailDummyService implements CocktailService {
         return Optional.empty();
     }
 
-    private static Cocktail getCocktailMargerita() {
+    public static Cocktail getCocktailMargerita() {
         Cocktail cocktailMargerita = new Cocktail();
         cocktailMargerita.setCocktailId(UUID.fromString("23b3d85a-3928-41c0-a533-6538a71e17c4"));
         cocktailMargerita.setApiId("23b3d85a-3928-41c0-a533-6538a71e17c4");
@@ -55,7 +55,7 @@ public class CocktailDummyService implements CocktailService {
         return cocktailMargerita;
     }
 
-    private static Cocktail getCocktailBlueMargerita() {
+    public static Cocktail getCocktailBlueMargerita() {
         Cocktail cocktailBlueMargerita = new Cocktail();
         cocktailBlueMargerita.setCocktailId(UUID.fromString("23b3d85a-3928-41c0-a533-6538a71e17c4"));
         cocktailBlueMargerita.setApiId("23b3d85a-3928-41c0-a533-6538a71e17c4");

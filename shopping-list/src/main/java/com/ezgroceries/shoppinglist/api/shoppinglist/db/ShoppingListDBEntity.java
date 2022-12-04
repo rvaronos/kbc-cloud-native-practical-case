@@ -3,6 +3,7 @@ package com.ezgroceries.shoppinglist.api.shoppinglist.db;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,7 +36,7 @@ public class ShoppingListDBEntity {
     @Setter
     private String name;
 
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "cocktail_shopping_list", joinColumns = {
             @JoinColumn(name = "shopping_list_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "cocktail_id") })
@@ -47,18 +48,9 @@ public class ShoppingListDBEntity {
         ShoppingList shoppingList = new ShoppingList();
         shoppingList.setShoppingListId(this.getId());
         shoppingList.setName(this.getName());
-        shoppingList.setIngredients(this.getIngredientsFromCocktails());
+        shoppingList.setCocktails(this.cocktails.stream().map(cocktail -> cocktail.output())
+                .collect(Collectors.toCollection(HashSet::new)));
         return shoppingList;
-    }
-
-    private Set<String> getIngredientsFromCocktails() {
-        HashSet<String> ingredients = new HashSet<String>();
-        this.cocktails.stream().forEach((cocktail -> {
-            cocktail.getIngredients().stream().forEach(ingredient -> {
-                ingredients.add(ingredient);
-            });
-        }));
-        return ingredients;
     }
 
 }

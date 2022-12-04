@@ -50,6 +50,8 @@ public class CocktailDBEntity {
     public Cocktail output() {
         Cocktail cocktail = new Cocktail();
         cocktail.setCocktailId(this.getId());
+        cocktail.setIngredients(this.getIngredients());
+        cocktail.setName(this.getName());
         return cocktail;
     }
 
