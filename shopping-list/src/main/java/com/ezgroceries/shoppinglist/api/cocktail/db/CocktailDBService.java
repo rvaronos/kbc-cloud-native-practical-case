@@ -31,6 +31,9 @@ public class CocktailDBService implements CocktailService {
             }
             CocktailDBEntity cocktailDBEntity = new CocktailDBEntity();
             cocktailDBEntity.setId(cocktail.getCocktailId());
+            cocktailDBEntity.setIdDrink(cocktail.getApiId());
+            cocktailDBEntity.setName(cocktail.getName());
+            cocktailDBEntity.setIngredients(cocktail.getIngredients());
             this.cocktailDBRepository.save(cocktailDBEntity);
         });
         return cocktails;

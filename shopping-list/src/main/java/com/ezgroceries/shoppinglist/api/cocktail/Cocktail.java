@@ -1,5 +1,6 @@
 package com.ezgroceries.shoppinglist.api.cocktail;
 
+import java.util.Set;
 import java.util.UUID;
 
 import lombok.Data;
@@ -12,5 +13,5 @@ public class Cocktail {
     private String glass;
     private String instructions;
     private String image;
-    private String[] ingredients;
+    private Set<String> ingredients;
 }

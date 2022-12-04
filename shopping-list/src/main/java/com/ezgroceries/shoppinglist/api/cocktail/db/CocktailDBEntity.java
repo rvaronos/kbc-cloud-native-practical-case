@@ -26,6 +26,12 @@ public class CocktailDBEntity {
     @Column()
     private UUID id;
 
+    @Column()
+    private String idDrink;
+
+    @Column()
+    private String name;
+
     @Convert(converter = StringSetConverter.class)
     private Set<String> ingredients;
 
