@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
@@ -73,6 +74,28 @@ public class ShoppingListControllerTest {
                                 .andExpect(MockMvcResultMatchers.status().isOk())
                                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                                 .andExpect(MockMvcResultMatchers.content().json(shoppingListsJSON));
+
+        }
+
+        @Test
+        public void testAddCocktail() throws Exception {
+
+                ShoppingListBodyAddCocktail requestBody = new ShoppingListBodyAddCocktail();
+                requestBody.setCocktailId(UUID.fromString("c16acb4d-c85e-43db-a006-5f8d99a97aa2"));
+
+                Gson requestBodyGson = new Gson();
+
+                String requestBodyJson = requestBodyGson.toJson(requestBody);
+
+                UUID shoppingListId = UUID.fromString("c16acb4d-c85e-43db-a006-5f8d99a97aa2");
+
+                mockMvc.perform(MockMvcRequestBuilders.post("/shopping-lists/" + shoppingListId + "/cocktails")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(requestBodyJson))
+                                .andExpect(MockMvcResultMatchers.status().isCreated())
+                                .andExpect(MockMvcResultMatchers.header().string("Location",
+                                                "http://localhost/shopping-lists/" + shoppingListId + "/cocktails/"
+                                                                + requestBody.getCocktailId()));
 
         }
 }

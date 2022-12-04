@@ -51,7 +51,7 @@ public class ShoppingListDummyService implements ShoppingListService {
     public Cocktail addCocktail(UUID shoppingListId, ShoppingListBodyAddCocktail body) {
 
         Cocktail newCocktail = new Cocktail();
-        newCocktail.setCocktailId(UUID.fromString("4ba92a46-1d1b-4e52-8e38-13cd56c7224c"));
+        newCocktail.setCocktailId(body.getCocktailId());
         newCocktail.setIngredients(Sets.newHashSet("Triple sec"));
 
         return newCocktail;
