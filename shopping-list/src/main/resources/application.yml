@@ -44,8 +44,6 @@ server:
 feign:
   circuitbreaker:
     enabled: true
-  hystrix:
-    enabled: true
   client:
     config:
       default:
