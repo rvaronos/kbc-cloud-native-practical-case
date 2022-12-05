@@ -39,3 +39,18 @@ server:
     trust-store: classpath:keystore/local-truststore.jks
     trust-store-password: hunter2
     client-auth: need
+
+# feign config
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connect-timeout: 3000
+        read-timeout: 3000
+        logger-level: basic
+
+logging:
+  level:
+    "[com.ezgroceries.shoppinglist]": DEBUG
