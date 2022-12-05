@@ -30,7 +30,7 @@ public class ShoppingListController {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
-	private ShoppingListService shoppingListService;
+	private final ShoppingListService shoppingListService;
 
 	@PostMapping(value = "/shopping-lists")
 	public ResponseEntity<Void> create(@RequestBody ShoppingListBodyCreate body) {

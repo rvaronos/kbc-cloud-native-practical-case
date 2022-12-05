@@ -25,9 +25,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ShoppingListDBService implements ShoppingListService {
 
-    private ShoppingListDBRepository shoppingListDBRepository;
-    private CocktailDBRepository cocktailDBRepository;
-    private CocktailShoppingListDBRepository cocktailShoppingListDBRepository;
+    private final ShoppingListDBRepository shoppingListDBRepository;
+    private final CocktailDBRepository cocktailDBRepository;
+    private final CocktailShoppingListDBRepository cocktailShoppingListDBRepository;
 
     @Override
     public ShoppingList create(ShoppingListBodyCreate body) {

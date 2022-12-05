@@ -1,5 +1,6 @@
 package com.ezgroceries.shoppinglist.api.cocktail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,13 +17,12 @@ public class CocktailController {
 
 	private static final Logger log = LoggerFactory.getLogger(CocktailController.class);
 
-	private CocktailService cocktailService;
+	private final CocktailService cocktailService;
 
 	@GetMapping(value = "/cocktails")
 	public List<Cocktail> cocktails(@RequestParam String search) {
 		log.info("Request cocktails list");
 		return this.cocktailService.getAll(search);
-
 	}
 
 }

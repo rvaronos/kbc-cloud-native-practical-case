@@ -24,17 +24,17 @@ import lombok.Setter;
 public class CocktailDBEntity {
 
     @Id
-    @Column()
+    @Column
     @Getter
     @Setter
     private UUID id;
 
-    @Column()
+    @Column
     @Getter
     @Setter
     private String idDrink;
 
-    @Column()
+    @Column
     @Getter
     @Setter
     private String name;
@@ -44,17 +44,17 @@ public class CocktailDBEntity {
     @Setter
     private Set<String> ingredients;
 
-    @Column()
+    @Column
     @Getter
     @Setter
     private String glass;
 
-    @Column()
+    @Column
     @Getter
     @Setter
     private String instructions;
 
-    @Column()
+    @Column
     @Getter
     @Setter
     private String imageLink;

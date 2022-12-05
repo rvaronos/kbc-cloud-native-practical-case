@@ -18,9 +18,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CocktailDBService implements CocktailService {
 
-    private CocktailAPIRepository cocktailAPI;
+    private final CocktailAPIRepository cocktailAPI;
 
-    private CocktailDBRepository cocktailDBRepository;
+    private final CocktailDBRepository cocktailDBRepository;
 
     @Override
     public List<Cocktail> getAll(String query) {

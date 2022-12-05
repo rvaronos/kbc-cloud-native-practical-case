@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CocktailAPIRepository {
 
-    private CocktailAPIClient cocktailDBClient;
+    private final CocktailAPIClient cocktailDBClient;
 
     public List<Cocktail> getAll(String query) {
         ResponseEntity<CocktailAPIResponseSearch> response = this.cocktailDBClient.searchCocktails(query);
