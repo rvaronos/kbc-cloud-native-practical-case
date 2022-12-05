@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,12 +22,14 @@ import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class ShoppingListController {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Autowired
 	private ShoppingListService shoppingListService;
 
 	@PostMapping(value = "/shopping-lists")

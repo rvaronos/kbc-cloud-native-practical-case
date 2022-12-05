@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +18,15 @@ import com.ezgroceries.shoppinglist.api.shoppinglist.ShoppingListService;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyAddCocktail;
 import com.ezgroceries.shoppinglist.api.shoppinglist.body.ShoppingListBodyCreate;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 @ConditionalOnProperty(prefix = "service", name = "shoppingList", havingValue = "db")
+@RequiredArgsConstructor
 public class ShoppingListDBService implements ShoppingListService {
 
-    @Autowired
     private ShoppingListDBRepository shoppingListDBRepository;
-
-    @Autowired
     private CocktailDBRepository cocktailDBRepository;
-
-    @Autowired
     private CocktailShoppingListDBRepository cocktailShoppingListDBRepository;
 
     @Override

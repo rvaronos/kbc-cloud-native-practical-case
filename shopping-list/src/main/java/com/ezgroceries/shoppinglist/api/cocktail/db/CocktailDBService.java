@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +11,15 @@ import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.ezgroceries.shoppinglist.api.cocktail.CocktailService;
 import com.ezgroceries.shoppinglist.api.cocktail.api.CocktailAPIRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 @ConditionalOnProperty(prefix = "service", name = "cocktail", havingValue = "db")
+@RequiredArgsConstructor
 public class CocktailDBService implements CocktailService {
 
-    @Autowired
     private CocktailAPIRepository cocktailAPI;
 
-    @Autowired
     private CocktailDBRepository cocktailDBRepository;
 
     @Override
@@ -34,6 +34,9 @@ public class CocktailDBService implements CocktailService {
             cocktailDBEntity.setIdDrink(cocktail.getApiId());
             cocktailDBEntity.setName(cocktail.getName());
             cocktailDBEntity.setIngredients(cocktail.getIngredients());
+            cocktailDBEntity.setGlass(cocktail.getGlass());
+            cocktailDBEntity.setInstructions(cocktail.getInstructions());
+            cocktailDBEntity.setImageLink(cocktail.getImage());
             this.cocktailDBRepository.save(cocktailDBEntity);
         });
         return cocktails;

@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.ezgroceries.shoppinglist.api.cocktail.Cocktail;
 import com.google.common.base.Optional;
 
+import lombok.RequiredArgsConstructor;
+
 @Repository
+@RequiredArgsConstructor
 public class CocktailAPIRepository {
 
-    @Autowired
     private CocktailAPIClient cocktailDBClient;
 
     public List<Cocktail> getAll(String query) {

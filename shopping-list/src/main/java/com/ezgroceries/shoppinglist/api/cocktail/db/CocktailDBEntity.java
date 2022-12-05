@@ -44,6 +44,21 @@ public class CocktailDBEntity {
     @Setter
     private Set<String> ingredients;
 
+    @Column()
+    @Getter
+    @Setter
+    private String glass;
+
+    @Column()
+    @Getter
+    @Setter
+    private String instructions;
+
+    @Column()
+    @Getter
+    @Setter
+    private String imageLink;
+
     @ManyToMany(mappedBy = "cocktails", fetch = FetchType.LAZY)
     private Set<ShoppingListDBEntity> shoppingLists = new HashSet<>();
 
