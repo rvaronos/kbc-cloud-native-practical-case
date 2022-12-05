@@ -12,4 +12,6 @@ public interface CocktailDBRepository extends JpaRepository<CocktailDBEntity, UU
 
     List<CocktailDBEntity> findByNameContainingIgnoreCase(String query);
 
+    CocktailDBEntity findByIdDrink(String idDrink);
+
 }
